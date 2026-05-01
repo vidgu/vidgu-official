@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Vidgu Max - Official</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { background-color: #000; color: white; font-family: sans-serif; overflow-x: hidden; scroll-behavior: smooth; }
+        #vidgu-official-ui { width: 100%; min-height: 100vh; display: flex; flex-direction: column; }
+        
+        /* Updated Status Bar with Clock */
+        .status-bar { background: #111; padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #222; font-size: 12px; color: #1ed760; font-weight: 900; }
+        .clock-display { color: #fff; font-family: monospace; letter-spacing: 1px; margin-right: 10px; }
+        
+        .hero { padding: 45px 20px; text-align: center; background: radial-gradient(circle at top, #0f2b1a 0%, #000 100%); }
+        .logo-box { width: 110px; height: 110px; margin: 0 auto 25px; animation: logoPulseGlow 3s ease-in-out infinite; }
+        .logo-img { width: 100%; height: 100%; border-radius: 28px; border: 2px solid #1ed760; object-fit: cover; background: #111; }
+        @keyframes logoPulseGlow { 0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(30, 215, 96, 0.4)); } 50% { transform: scale(1.05); filter: drop-shadow(0 0 25px rgba(30, 215, 96, 0.8)); } }
+        
+        h1 { font-size: 34px; font-weight: 900; margin-bottom: 5px; }
+        .install-btn { text-decoration: none; display: flex; align-items: center; justify-content: center; background: #1ed760; color: black; padding: 20px; border-radius: 20px; font-weight: 900; font-size: 18px; box-shadow: 0 12px 35px rgba(30, 215, 96, 0.5); animation: buttonBounce 2s infinite; margin: 0 20px; }
+        @keyframes buttonBounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+
+        .social-links-area { margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 12px; }
+        .instagram-link-hero { display: inline-block; color: #1ed760; text-decoration: none; font-size: 14px; font-weight: bold; border-bottom: 1px solid #1ed760; padding-bottom: 2px; }
+        
+        .support-text { font-size: 11px; color: #888; font-weight: bold; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        .integrity-box { background: rgba(30, 215, 96, 0.05); border: 1px dashed rgba(30, 215, 96, 0.2); padding: 12px; border-radius: 10px; margin-top: 10px; width: 90%; }
+        
+        .secure-badge { font-size: 10px; color: #1ed760; font-weight: 900; text-align: center; margin-bottom: 4px; display: flex; justify-content: center; align-items: center; gap: 5px; }
+        .hash-text { font-family: monospace; font-size: 8px; color: #555; word-break: break-all; text-align: center; line-height: 1.2; margin-bottom: 10px; border-bottom: 1px solid #222; padding-bottom: 8px; }
+
+        .revenue-info { font-size: 10px; color: #bbb; line-height: 1.6; text-align: center; font-style: italic; }
+        .rev-highlight { color: #1ed760; font-weight: bold; }
+
+        .small-capsule-links { display: flex; gap: 15px; }
+        .small-capsule-links a { color: #888; text-decoration: none; font-size: 11px; font-weight: 900; text-transform: uppercase; border: 1px solid #222; padding: 5px 12px; border-radius: 50px; }
+
+        .chat-section { padding: 30px 20px; background: #050505; }
+        .chat-container { background: #111; border-radius: 24px; padding: 25px; border: 1px solid #222; min-height: 200px; position: relative; }
+        .ai-label { color: #1ed760; font-size: 11px; font-weight: 900; letter-spacing: 1px; margin-bottom: 15px; display: flex; justify-content: space-between; align-items: center; }
+        
+        .lang-select { background: #222; color: #1ed760; border: 1px solid #333; border-radius: 5px; font-size: 10px; padding: 2px; outline: none; }
+        #ai-message { font-size: 18px; font-weight: 600; line-height: 1.5; color: #fff; animation: textFade 0.5s ease-in-out; margin-bottom: 15px; }
+        
+        .ai-learn-more { color: #1ed760; text-decoration: none; font-size: 12px; font-weight: 900; background: rgba(30, 215, 96, 0.1); padding: 8px 15px; border-radius: 10px; border: 1px solid rgba(30, 215, 96, 0.3); display: inline-block; }
+
+        .controls { display: flex; gap: 10px; align-items: center; }
+        .sound-badge { background: #222; padding: 4px 8px; border-radius: 8px; color: #888; font-size: 10px; cursor: pointer; border: 1px solid transparent; }
+        .sound-on { color: #1ed760; border: 1px solid #1ed760; }
+
+        .payouts-card { background: rgba(255,255,255,0.02); border: 1px solid #1a1a1a; border-radius: 24px; padding: 22px; margin: 20px; }
+        .payout-item { background: #080808; padding: 14px; border-radius: 14px; display: flex; justify-content: space-between; margin-bottom: 12px; border: 1px solid #111; font-size: 14px; }
+        .amount { color: #1ed760; font-weight: 900; }
+        
+        .footer-section { text-align: center; color: #444; padding: 30px 20px; background: #000; border-top: 1px solid #111; }
+        .footer-links { margin-bottom: 15px; }
+        .footer-links a { color: #888; text-decoration: none; font-size: 11px; margin: 0 10px; font-weight: bold; }
+        .footer-links a:hover { color: #1ed760; }
+        .copyright { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; margin-top: 10px; }
+    </style>
+</head>
+<body>
+
+<div id="vidgu-official-ui">
+    <div class="status-bar">
+        <div><span id="real-time-clock" class="clock-display">00:00:00</span> VIDGU MAX OFFICIAL</div>
+        <div style="background:#1ed760;width:8px;height:8px;border-radius:50%; box-shadow: 0 0 10px #1ed760;"></div>
+    </div>
+
+    <div class="hero">
+        <div class="logo-box"><img src="https://raw.githubusercontent.com/vidgu/VIDGU-MAX/main/icon.png" class="logo-img" alt="Logo"></div>
+        <h1>VIDGU <span style="color: #1ed760;">MAX</span></h1>
+        <p style="color:#888; margin-bottom:25px;">Download, Watch & Earn Real Cash</p>
+        
+        <a href="https://github.com/vidgu/VIDGU-MAX/releases/download/v1.0/Vidgu.Max.apk" class="install-btn">INSTALL OFFICIAL APP</a>
+        
+        <div class="social-links-area">
+            <div class="support-text">Koi bhi problem hai to WhatsApp Support contact karein</div>
+            
+            <a href="https://www.instagram.com/vidgumax?igsh=MXFoNm1lMTVxMWp1cA==" target="_blank" class="instagram-link-hero">Learn More About Instagram ></a>
+            
+            <div class="small-capsule-links">
+                <a href="https://wa.me/message/EJSEJAT6E53UG1" target="_blank">WhatsApp Chat</a>
+                <a href="https://whatsapp.com/channel/0029VbCHnJdFXUuec2y2KY1I" target="_blank">WA Channel</a>
+            </div>
+
+            <div class="integrity-box">
+                <div class="secure-badge">✓ 100% SECURE & TRUSTED BUILD</div>
+                <!-- Updated SHA256 Hash Below -->
+                <div class="hash-text">sha256:12093aaf6f68ff47c4a6f8e96b9a85bd3894ece479549682e2bfc5963e42787b</div>
+                
+                <div class="revenue-info">
+                    Vidgu Max ads revenue split: <span class="rev-highlight">60% to Users</span>, 
+                    <span class="rev-highlight">30% donated to Anath Ashram</span>, 
+                    and <span class="rev-highlight">10% donated to Mandir</span>. 
+                    Vidgu Max maintains only 10% for operations.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="chat-section">
+        <div class="chat-container">
+            <div class="ai-label">
+                <span>VIDGU ASSISTANT</span>
+                <div class="controls">
+                    <select id="lang-picker" class="lang-select">
+                        <option value="hi-IN">हिन्दी (Hindi)</option>
+                        <option value="en-IN">English (India)</option>
+                    </select>
+                    <span id="sound-toggle" class="sound-badge">SOUND OFF</span>
+                </div>
+            </div>
+            <div id="ai-message">Swaagat hai! Vidgu Max se aap daily ₹500 tak kama sakte hain.</div>
+            <a href="https://whatsapp.com/channel/0029VbCHnJdFXUuec2y2KY1I" target="_blank" class="ai-learn-more">JOIN WHATSAPP CHANNEL</a>
+        </div>
+    </div>
+
+    <div class="payouts-card">
+        <div style="font-size:11px; font-weight:900; color:#444; margin-bottom:15px; letter-spacing:1px;">RECENT WITHDRAWALS</div>
+        <div id="payout-list"></div>
+    </div>
+
+    <footer class="footer-section">
+        <div class="footer-links">
+            <a href="https://www.termsfeed.com/live/374f101e-c65b-4af0-9225-f420fe313a5c" target="_blank">PRIVACY POLICY</a>
+            <a href="#">TERMS OF SERVICE</a>
+            <a href="https://wa.me/message/EJSEJAT6E53UG1" target="_blank">CONTACT ON WHATSAPP</a>
+        </div>
+        <div class="copyright">© 2026 VIDGU MAX • TRUSTED BY 1M+ USERS</div>
+    </footer>
+</div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        const hours = String(now.getHours()).padStart(2, '0');
+        const minutes = String(now.getMinutes()).padStart(2, '0');
+        const seconds = String(now.getSeconds()).padStart(2, '0');
+        document.getElementById('real-time-clock').innerText = `${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    const messages = [
+        "Swaagat hai! Vidgu Max se aap daily ₹500 tak kama sakte hain.",
+        "Bas video dekhein aur points ko cash mein badlein. Bahut aasan hai!",
+        "Withdrawal ki chinta mat kijiye, hum direct UPI mein payment dete hain.",
+        "Aapka data 100% safe hai, humne security ka pura dhyan rakha hai.",
+        "Abhi install karein aur bonus paayein!",
+        "Dosto ko refer karein aur har referral par extra cash kamaayein!"
+    ];
+
+    let msgIndex = 0;
+    let isSoundOn = false;
+    let selectedLang = 'hi-IN';
+
+    const soundToggle = document.getElementById('sound-toggle');
+    const langPicker = document.getElementById('lang-picker');
+
+    langPicker.addEventListener('change', (e) => {
+        selectedLang = e.target.value;
+        if(isSoundOn) speakText(messages[msgIndex]);
+    });
+
+    soundToggle.addEventListener('click', () => {
+        isSoundOn = !isSoundOn;
+        soundToggle.innerText = isSoundOn ? "SOUND ON" : "SOUND OFF";
+        soundToggle.classList.toggle('sound-on');
+        if(isSoundOn) {
+            window.speechSynthesis.cancel();
+            speakText(messages[msgIndex]);
+        }
+    });
+
+    function speakText(text) {
+        if (!isSoundOn) return;
+        window.speechSynthesis.cancel();
+        const speech = new SpeechSynthesisUtterance(text);
+        speech.lang = selectedLang; 
+        window.speechSynthesis.speak(speech);
+    }
+
+    function rotateMessage() {
+        const msgElement = document.getElementById('ai-message');
+        if(msgElement) {
+            msgIndex = (msgIndex + 1) % messages.length;
+            msgElement.innerText = messages[msgIndex];
+            if(isSoundOn) speakText(messages[msgIndex]);
+        }
+    }
+
+    setInterval(rotateMessage, 5000);
+
+    const data = [{u:"Aryan_K****",a:"₹200"}, {u:"Suresh_V****",a:"₹500"}, {u:"Nisha_R****",a:"₹150"}, {u:"Rahul_S****",a:"₹300"}];
+    function updatePayouts() {
+        const list = document.getElementById('payout-list');
+        if(list) list.innerHTML = data.sort(() => 0.5 - Math.random()).slice(0,3).map(i => `
+            <div class="payout-item"><span>User ${i.u}</span><span class="amount">${i.a}</span></div>
+        `).join('');
+    }
+    setInterval(updatePayouts, 4000); updatePayouts();
+</script>
+
+</body>
+</html>
